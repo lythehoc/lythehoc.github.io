@@ -1,1 +1,1 @@
-2 file hình ảnh chỉ để dự phòng, website lấy từ mediafire
+2 file hình ảnh ở trong thư mục này dùng để dự phòng, website lấy hình từ mediafire.
