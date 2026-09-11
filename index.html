@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chào bạn!</title>
     <link rel="icon" href="https://www.mediafire.com/convkey/10a8/0f41k3j9ud6vxix6g.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -250,37 +253,19 @@
             background: #fff;
             box-shadow: 0 0 0 3px rgba(72,177,255,.18);
         }
-
         .marquee {
             width: fit-content;
-            max-width: calc(100vw - 32px);
-            margin: 22px auto 0;
-            padding: 4px 14px 8px;
-            font-family: "Segoe Script", "Brush Script MT", "Snell Roundhand", "Apple Chancery", cursive;
-            font-size: clamp(1.55rem, 3.8vw, 2.15rem);
-            font-weight: 500;
-            letter-spacing: .025em;
-            text-transform: none;
-            line-height: 1.25;
-            color: transparent;
-            background: linear-gradient(100deg, #ffffff 0%, #bfeeff 42%, #67c9f5 68%, #eafaff 100%);
-            background-size: 180% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            text-shadow: 0 2px 10px rgba(70,180,230,.20), 0 0 22px rgba(135,220,255,.14);
-            transform: rotate(-2deg);
-            animation: quoteShimmer 8s ease-in-out infinite alternate;
+            margin: 18px auto 0;
+            color: #c96f6f;
+            font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+            font-size: 1.45em;
+            font-weight: 400;
+            letter-spacing: .02em;
+            line-height: 1.2;
+            text-align: center;
+            opacity: .92;
         }
 
-
-        @keyframes quoteShimmer {
-            from { background-position: 0% center; }
-            to { background-position: 100% center; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .marquee { animation: none; }
-        }
     </style>
 </head>
 <body>
