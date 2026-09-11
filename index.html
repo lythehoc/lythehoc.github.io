@@ -142,15 +142,140 @@
         }
 
         .audio-player {
-            margin: 20px 0;
+            width: min(380px, calc(100vw - 40px));
+            margin: 22px auto 18px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255,255,255,.13);
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.045));
+            box-shadow: 0 12px 35px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.08);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            cursor: default;
+        }
+
+        .audio-player audio {
+            display: none;
+        }
+
+        .play-button {
+            width: 44px;
+            height: 44px;
+            flex: 0 0 44px;
+            display: grid;
+            place-items: center;
+            border: 0;
+            border-radius: 50%;
+            color: #fff;
+            background: linear-gradient(135deg, #d9f7ff 0%, #63d8ff 55%, #3288ff 100%);
+            box-shadow: 0 7px 22px rgba(72,177,255,.30);
+            cursor: pointer;
+            transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+        }
+
+        .play-button:hover {
+            transform: translateY(-1px) scale(1.04);
+            box-shadow: 0 9px 28px rgba(72,177,255,.40);
+            filter: brightness(1.07);
+        }
+
+        .play-button:active {
+            transform: scale(.96);
+        }
+
+        .play-button svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            pointer-events: none;
+        }
+
+        .player-main {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .player-topline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .track-name {
+            overflow: hidden;
+            color: rgba(255,255,255,.92);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .02em;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .progress {
+            width: 100%;
+            height: 4px;
+            display: block;
+            margin: 0;
+            border: 0;
+            border-radius: 999px;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+            background: linear-gradient(to right, rgba(215,248,255,.98) 0%, rgba(69,177,255,.98) var(--progress, 0%), rgba(255,255,255,.14) var(--progress, 0%), rgba(255,255,255,.14) 100%);
+            cursor: pointer;
+        }
+
+        .progress::-webkit-slider-thumb {
+            width: 12px;
+            height: 12px;
+            border: 0;
+            border-radius: 50%;
+            appearance: none;
+            -webkit-appearance: none;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(72,177,255,.18);
+        }
+
+        .progress::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border: 0;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(72,177,255,.18);
         }
 
         .marquee {
-            width: 50%;
-            margin: 20px auto;
-            color: #ff0000;
-            font-family: Tahoma;
-            font-size: 1.2em;
+            width: fit-content;
+            max-width: calc(100vw - 40px);
+            margin: 24px auto 0;
+            padding: 2px 10px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+            font-weight: 650;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: transparent;
+            background: linear-gradient(90deg, #f2fbff, #9be7ff, #4cbcff, #dff8ff, #f2fbff);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-shadow: 0 0 24px rgba(76,188,255,.25);
+            animation: quoteGradient 7s linear infinite;
+        }
+
+        @keyframes quoteGradient {
+            to { background-position: 250% center; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .marquee { animation: none; }
         }
     </style>
 </head>
@@ -162,10 +287,21 @@
             <h2 id="h2"></h2>
             <a href="https://fb.com/lythehoc" class="social-link" target="_blank">fb.com/lythehoc</a>
             <div class="audio-player">
-                <audio controls autoplay loop>
+                <audio id="bgAudio" autoplay loop preload="metadata">
                     <source src="Thanh_Xuan.m4a" type="audio/mp4">
                     Your browser does not support the audio element.
                 </audio>
+                <button class="play-button" id="playButton" type="button" aria-label="Play audio">
+                    <svg id="playIcon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M8 5.5v13l10-6.5z"></path>
+                    </svg>
+                </button>
+                <div class="player-main">
+                    <div class="player-topline">
+                        <span class="track-name">Thanh Xuân</span>
+                    </div>
+                    <input class="progress" id="progressBar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Audio progress">
+                </div>
             </div>
             <div class="marquee">
                 We only live once
@@ -427,6 +563,56 @@
         resize();
         };
         })(window);
+
+        // Modern custom audio controls (no volume control)
+        window.addEventListener('load', function() {
+            var audio = document.getElementById('bgAudio');
+            var playButton = document.getElementById('playButton');
+            var playIcon = document.getElementById('playIcon');
+            var progressBar = document.getElementById('progressBar');
+            function updatePlayIcon() {
+                if (audio.paused) {
+                    playIcon.innerHTML = '<path d="M8 5.5v13l10-6.5z"></path>';
+                    playButton.setAttribute('aria-label', 'Play audio');
+                } else {
+                    playIcon.innerHTML = '<path d="M7 5h4v14H7zm6 0h4v14h-4z"></path>';
+                    playButton.setAttribute('aria-label', 'Pause audio');
+                }
+            }
+
+            function updateProgress() {
+                var percent = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+                progressBar.value = percent;
+                progressBar.style.setProperty('--progress', percent + '%');
+            }
+
+            playButton.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play().catch(function() {});
+                } else {
+                    audio.pause();
+                }
+            });
+
+            progressBar.addEventListener('input', function() {
+                if (audio.duration) {
+                    audio.currentTime = (progressBar.value / 100) * audio.duration;
+                    updateProgress();
+                }
+            });
+
+            audio.addEventListener('loadedmetadata', updateProgress);
+            audio.addEventListener('timeupdate', updateProgress);
+            audio.addEventListener('play', updatePlayIcon);
+            audio.addEventListener('pause', updatePlayIcon);
+            audio.addEventListener('ended', updatePlayIcon);
+
+            updatePlayIcon();
+            updateProgress();
+
+            // Autoplay can be blocked by some browsers; the play button remains available.
+            audio.play().catch(function() { updatePlayIcon(); });
+        });
     </script>
 </body>
 </html>
