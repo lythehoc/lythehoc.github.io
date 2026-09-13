@@ -25,15 +25,12 @@
     html {
         margin: 0;
         padding: 0;
-
         font: 16px/1.4 Lato, sans-serif;
-        font-family: Comic Sans MS;
-
         color: #fefeff;
-        background: #080510;
-
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
+        font-family: Comic Sans MS;
+        background: #080510;
 
         -webkit-touch-callout: none;
         -webkit-user-select: none;
@@ -47,14 +44,14 @@
         font: 2.75em Cinzel, serif;
         font-weight: 400;
         letter-spacing: .35em;
-        text-shadow: 0 0 25px rgba(254, 254, 255, .85);
+        text-shadow: 0 0 25px rgba(254,254,255,.85);
     }
 
     h2 {
         font: 1.45em Cinzel, serif;
         font-weight: 400;
         letter-spacing: .5em;
-        text-shadow: 0 0 25px rgba(254, 254, 255, .85);
+        text-shadow: 0 0 25px rgba(254,254,255,.85);
         text-transform: lowercase;
     }
 
@@ -81,7 +78,7 @@
     h1,
     h2 {
         visibility: hidden;
-        transform: translate3d(0, 0, 0);
+        transform: translate3d(0,0,0);
     }
 
     h1.transition-in,
@@ -103,10 +100,8 @@
         display: table;
         position: absolute;
         z-index: 20;
-
         width: 100%;
         height: 100%;
-
         text-align: center;
         cursor: none;
     }
@@ -121,13 +116,10 @@
         width: 100%;
         left: 0;
         bottom: 25px;
-
         font-size: .8em;
         letter-spacing: .1em;
         font-weight: 300;
-
         color: #76747a;
-
         -webkit-font-smoothing: subpixel-antialiased;
         font-smoothing: subpixel-antialiased;
     }
@@ -144,13 +136,10 @@
     #canvas {
         position: absolute;
         z-index: 10;
-
         top: 0;
         left: 0;
-
         width: 100%;
         height: 100%;
-
         cursor: none;
     }
 
@@ -160,22 +149,19 @@
     }
 
     .social-link {
-        display: inline-block;
-
-        margin: 20px 0;
-
         color: #fefeff;
         text-decoration: none;
         font-size: 1.2em;
+        margin: 20px 0;
+        display: inline-block;
     }
 
-    /* ==============================
+    /* =========================
        AUDIO PLAYER
-       ============================== */
+       ========================= */
 
     .audio-player {
         width: min(190px, calc(100vw - 32px));
-
         margin: 22px auto 18px;
         padding: 9px 11px;
 
@@ -221,7 +207,6 @@
         place-items: center;
 
         padding: 0;
-
         border: 0;
         border-radius: 50%;
 
@@ -261,11 +246,8 @@
     .play-button svg {
         width: 15px;
         height: 15px;
-
         display: block;
-
         fill: currentColor;
-
         pointer-events: none;
     }
 
@@ -280,7 +262,6 @@
     .progress {
         width: 100%;
         height: 4px;
-
         display: block;
 
         margin: 0;
@@ -331,10 +312,8 @@
 
     .progress::-moz-range-track {
         height: 4px;
-
         border: 0;
         border-radius: 999px;
-
         background: transparent;
     }
 
@@ -353,7 +332,6 @@
 
     .marquee {
         width: fit-content;
-
         margin: 18px auto 0;
 
         color: #c96f6f;
@@ -370,7 +348,6 @@
         line-height: 1.2;
 
         text-align: center;
-
         opacity: .92;
     }
 </style>
@@ -408,7 +385,7 @@
                 id="bgAudio"
                 autoplay
                 loop
-                preload="metadata"
+                preload="auto"
             >
                 <source
                     src="Thanh_Xuan.m4a"
@@ -460,7 +437,9 @@
 <canvas id="canvas"></canvas>
 
 <script>
+
     var Stats = function() {
+
         var e = Date.now(),
             t = e,
             i = 0,
@@ -478,8 +457,11 @@
         c.addEventListener(
             "mousedown",
             function(e) {
+
                 e.preventDefault();
+
                 v(++h % 2);
+
             },
             false
         );
@@ -490,6 +472,7 @@
         var u = document.createElement("div");
 
         u.id = "fps";
+
         u.style.cssText =
             "padding:0 0 3px 3px;text-align:left;background-color:#002";
 
@@ -498,6 +481,7 @@
         var d = document.createElement("div");
 
         d.id = "fpsText";
+
         d.style.cssText =
             "color:#0ff;font-family:Comic Sans MS;font-size:9px;font-weight:bold;line-height:15px";
 
@@ -514,7 +498,9 @@
             u.appendChild(p);
             74 > p.children.length;
         ) {
-            var f = document.createElement("span");
+
+            var f =
+                document.createElement("span");
 
             f.style.cssText =
                 "width:1px;height:30px;float:left;background-color:#113";
@@ -522,7 +508,8 @@
             p.appendChild(f);
         }
 
-        var m = document.createElement("div");
+        var m =
+            document.createElement("div");
 
         m.id = "ms";
 
@@ -531,7 +518,8 @@
 
         c.appendChild(m);
 
-        var g = document.createElement("div");
+        var g =
+            document.createElement("div");
 
         g.id = "msText";
 
@@ -542,7 +530,8 @@
 
         m.appendChild(g);
 
-        var y = document.createElement("div");
+        var y =
+            document.createElement("div");
 
         for (
             y.id = "msGraph",
@@ -551,7 +540,9 @@
             m.appendChild(y);
             74 > y.children.length;
         ) {
-            var f = document.createElement("span");
+
+            var f =
+                document.createElement("span");
 
             f.style.cssText =
                 "width:1px;height:30px;float:left;background-color:#131";
@@ -560,7 +551,9 @@
         }
 
         var v = function(e) {
+
             switch (h = e) {
+
                 case 0:
                     u.style.display = "block";
                     m.style.display = "none";
@@ -574,11 +567,16 @@
         };
 
         var b = function(e, t) {
-            var i = e.appendChild(e.firstChild);
-            i.style.height = t + "px";
+
+            var i =
+                e.appendChild(e.firstChild);
+
+            i.style.height =
+                t + "px";
         };
 
         return {
+
             REVISION: 11,
 
             domElement: c,
@@ -586,51 +584,88 @@
             setMode: v,
 
             begin: function() {
+
                 e = Date.now();
             },
 
             end: function() {
-                var h = Date.now();
 
-                i = h - e;
+                var h =
+                    Date.now();
 
-                n = Math.min(n, i);
-                r = Math.max(r, i);
+                i =
+                    h - e;
+
+                n =
+                    Math.min(n, i);
+
+                r =
+                    Math.max(r, i);
 
                 g.textContent =
-                    i + " MS (" + n + "-" + r + ")";
+                    i +
+                    " MS (" +
+                    n +
+                    "-" +
+                    r +
+                    ")";
 
                 b(
                     y,
                     Math.min(
                         30,
-                        30 - 30 * (i / 200)
+                        30 -
+                        30 *
+                        (i / 200)
                     )
                 );
 
                 l++;
 
-                if (h > t + 1000) {
+                if (
+                    h >
+                    t + 1000
+                ) {
 
-                    s = Math.round(
-                        1000 * l / (h - t)
-                    );
+                    s =
+                        Math.round(
+                            1000 *
+                            l /
+                            (h - t)
+                        );
 
-                    o = Math.min(o, s);
-                    a = Math.max(a, s);
+                    o =
+                        Math.min(
+                            o,
+                            s
+                        );
+
+                    a =
+                        Math.max(
+                            a,
+                            s
+                        );
 
                     d.textContent =
-                        s + " FPS (" + o + "-" + a + ")";
+                        s +
+                        " FPS (" +
+                        o +
+                        "-" +
+                        a +
+                        ")";
 
                     b(
                         p,
                         Math.min(
                             30,
-                            30 - 30 * (s / 100)
+                            30 -
+                            30 *
+                            (s / 100)
                         )
                     );
 
                     t = h;
+
                     l = 0;
                 }
 
@@ -638,7 +673,9 @@
             },
 
             update: function() {
-                e = this.end();
+
+                e =
+                    this.end();
             }
         };
     };
@@ -662,243 +699,306 @@
         settings.dampening = 0.25;
         settings.tension = 0.98;
 
-        Math.TWO_PI = Math.PI * 2;
+        Math.TWO_PI =
+            Math.PI * 2;
 
 
-        /* ==============================
+        /* =========================
            OSCILLATOR
-           ============================== */
+           ========================= */
 
         function Oscillator(options) {
-            this.init(options || {});
+
+            this.init(
+                options || {}
+            );
         }
 
-        Oscillator.prototype = (function() {
 
-            var value = 0;
+        Oscillator.prototype =
+            (function() {
 
-            return {
+                var value = 0;
 
-                init: function(options) {
+                return {
 
-                    this.phase =
-                        options.phase || 0;
+                    init: function(options) {
 
-                    this.offset =
-                        options.offset || 0;
+                        this.phase =
+                            options.phase ||
+                            0;
 
-                    this.frequency =
-                        options.frequency || 0.001;
+                        this.offset =
+                            options.offset ||
+                            0;
 
-                    this.amplitude =
-                        options.amplitude || 1;
-                },
+                        this.frequency =
+                            options.frequency ||
+                            0.001;
 
-                update: function() {
+                        this.amplitude =
+                            options.amplitude ||
+                            1;
+                    },
 
-                    this.phase +=
-                        this.frequency;
+                    update: function() {
 
-                    value =
-                        this.offset +
-                        Math.sin(this.phase) *
-                        this.amplitude;
+                        this.phase +=
+                            this.frequency;
 
-                    return value;
-                },
+                        value =
+                            this.offset +
+                            Math.sin(
+                                this.phase
+                            ) *
+                            this.amplitude;
 
-                value: function() {
-                    return value;
-                }
+                        return value;
+                    },
 
-            };
+                    value: function() {
 
-        })();
+                        return value;
+                    }
+                };
+
+            })();
 
 
-        /* ==============================
+        /* =========================
            TENDRIL
-           ============================== */
+           ========================= */
 
         function Tendril(options) {
-            this.init(options || {});
+
+            this.init(
+                options || {}
+            );
         }
 
-        Tendril.prototype = (function() {
 
-            function Node() {
-                this.x = 0;
-                this.y = 0;
-                this.vy = 0;
-                this.vx = 0;
-            }
+        Tendril.prototype =
+            (function() {
 
-            return {
+                function Node() {
 
-                init: function(options) {
+                    this.x = 0;
+                    this.y = 0;
+                    this.vy = 0;
+                    this.vx = 0;
+                }
 
-                    this.spring =
-                        options.spring +
-                        (Math.random() * 0.1) -
-                        0.05;
+                return {
 
-                    this.friction =
-                        settings.friction +
-                        (Math.random() * 0.01) -
-                        0.005;
+                    init: function(options) {
 
-                    this.nodes = [];
+                        this.spring =
+                            options.spring +
+                            (Math.random() *
+                                0.1) -
+                            0.05;
 
-                    for (
-                        var i = 0, node;
-                        i < settings.size;
-                        i++
-                    ) {
+                        this.friction =
+                            settings.friction +
+                            (Math.random() *
+                                0.01) -
+                            0.005;
 
-                        node = new Node();
+                        this.nodes = [];
 
-                        node.x = target.x;
-                        node.y = target.y;
+                        for (
+                            var i = 0,
+                                node;
+                            i <
+                            settings.size;
+                            i++
+                        ) {
 
-                        this.nodes.push(node);
-                    }
-                },
+                            node =
+                                new Node();
 
-                update: function() {
+                            node.x =
+                                target.x;
 
-                    var spring = this.spring,
-                        node = this.nodes[0];
+                            node.y =
+                                target.y;
 
-                    node.vx +=
-                        (target.x - node.x) *
-                        spring;
-
-                    node.vy +=
-                        (target.y - node.y) *
-                        spring;
-
-                    for (
-                        var prev,
-                            i = 0,
-                            n = this.nodes.length;
-                        i < n;
-                        i++
-                    ) {
-
-                        node = this.nodes[i];
-
-                        if (i > 0) {
-
-                            prev =
-                                this.nodes[i - 1];
-
-                            node.vx +=
-                                (prev.x - node.x) *
-                                spring;
-
-                            node.vy +=
-                                (prev.y - node.y) *
-                                spring;
-
-                            node.vx +=
-                                prev.vx *
-                                settings.dampening;
-
-                            node.vy +=
-                                prev.vy *
-                                settings.dampening;
+                            this.nodes.push(
+                                node
+                            );
                         }
+                    },
 
-                        node.vx *=
-                            this.friction;
+                    update: function() {
 
-                        node.vy *=
-                            this.friction;
+                        var spring =
+                                this.spring,
 
-                        node.x +=
-                            node.vx;
+                            node =
+                                this.nodes[0];
 
-                        node.y +=
-                            node.vy;
+                        node.vx +=
+                            (
+                                target.x -
+                                node.x
+                            ) *
+                            spring;
 
-                        spring *=
-                            settings.tension;
-                    }
-                },
+                        node.vy +=
+                            (
+                                target.y -
+                                node.y
+                            ) *
+                            spring;
 
-                draw: function() {
+                        for (
+                            var prev,
+                                i = 0,
+                                n =
+                                    this.nodes
+                                        .length;
+                            i < n;
+                            i++
+                        ) {
 
-                    var x =
-                            this.nodes[0].x,
-                        y =
-                            this.nodes[0].y,
-                        a,
-                        b;
+                            node =
+                                this.nodes[i];
 
-                    ctx.beginPath();
+                            if (i > 0) {
 
-                    ctx.moveTo(
-                        x,
-                        y
-                    );
+                                prev =
+                                    this.nodes[
+                                        i - 1
+                                    ];
 
-                    for (
-                        var i = 1,
-                            n =
-                                this.nodes.length -
-                                2;
-                        i < n;
-                        i++
-                    ) {
+                                node.vx +=
+                                    (
+                                        prev.x -
+                                        node.x
+                                    ) *
+                                    spring;
+
+                                node.vy +=
+                                    (
+                                        prev.y -
+                                        node.y
+                                    ) *
+                                    spring;
+
+                                node.vx +=
+                                    prev.vx *
+                                    settings
+                                        .dampening;
+
+                                node.vy +=
+                                    prev.vy *
+                                    settings
+                                        .dampening;
+                            }
+
+                            node.vx *=
+                                this.friction;
+
+                            node.vy *=
+                                this.friction;
+
+                            node.x +=
+                                node.vx;
+
+                            node.y +=
+                                node.vy;
+
+                            spring *=
+                                settings
+                                    .tension;
+                        }
+                    },
+
+                    draw: function() {
+
+                        var x =
+                                this.nodes[0].x,
+
+                            y =
+                                this.nodes[0].y,
+
+                            a,
+                            b;
+
+                        ctx.beginPath();
+
+                        ctx.moveTo(
+                            x,
+                            y
+                        );
+
+                        for (
+                            var i = 1,
+                                n =
+                                    this.nodes
+                                        .length -
+                                    2;
+                            i < n;
+                            i++
+                        ) {
+
+                            a =
+                                this.nodes[i];
+
+                            b =
+                                this.nodes[
+                                    i + 1
+                                ];
+
+                            x =
+                                (
+                                    a.x +
+                                    b.x
+                                ) *
+                                0.5;
+
+                            y =
+                                (
+                                    a.y +
+                                    b.y
+                                ) *
+                                0.5;
+
+                            ctx.quadraticCurveTo(
+                                a.x,
+                                a.y,
+                                x,
+                                y
+                            );
+                        }
 
                         a =
                             this.nodes[i];
 
                         b =
-                            this.nodes[i + 1];
-
-                        x =
-                            (a.x + b.x) *
-                            0.5;
-
-                        y =
-                            (a.y + b.y) *
-                            0.5;
+                            this.nodes[
+                                i + 1
+                            ];
 
                         ctx.quadraticCurveTo(
                             a.x,
                             a.y,
-                            x,
-                            y
+                            b.x,
+                            b.y
                         );
+
+                        ctx.stroke();
+
+                        ctx.closePath();
                     }
+                };
 
-                    a =
-                        this.nodes[i];
-
-                    b =
-                        this.nodes[i + 1];
-
-                    ctx.quadraticCurveTo(
-                        a.x,
-                        a.y,
-                        b.x,
-                        b.y
-                    );
-
-                    ctx.stroke();
-
-                    ctx.closePath();
-                }
-
-            };
-
-        })();
+            })();
 
 
-        /* ==============================
+        /* =========================
            INITIALIZE
-           ============================== */
+           ========================= */
 
         function init(event) {
 
@@ -947,11 +1047,14 @@
 
                 tendrils.push(
                     new Tendril({
+
                         spring:
                             0.45 +
                             0.025 *
-                            (i /
-                                settings.trails)
+                            (
+                                i /
+                                settings.trails
+                            )
                     })
                 );
             }
@@ -1008,7 +1111,8 @@
             }
 
             for (
-                var i = 0, tendril;
+                var i = 0,
+                    tendril;
                 i < settings.trails;
                 i++
             ) {
@@ -1025,7 +1129,9 @@
 
             ctx.stats.update();
 
-            requestAnimFrame(loop);
+            requestAnimFrame(
+                loop
+            );
         }
 
 
@@ -1043,7 +1149,8 @@
 
             if (!ctx.running) {
 
-                ctx.running = true;
+                ctx.running =
+                    true;
 
                 loop();
             }
@@ -1051,7 +1158,9 @@
 
 
         function stop() {
-            ctx.running = false;
+
+            ctx.running =
+                false;
         }
 
 
@@ -1060,10 +1169,14 @@
             if (event.touches) {
 
                 target.x =
-                    event.touches[0].pageX;
+                    event
+                        .touches[0]
+                        .pageX;
 
                 target.y =
-                    event.touches[0].pageY;
+                    event
+                        .touches[0]
+                        .pageY;
 
             } else {
 
@@ -1086,10 +1199,14 @@
             ) {
 
                 target.x =
-                    event.touches[0].pageX;
+                    event
+                        .touches[0]
+                        .pageX;
 
                 target.y =
-                    event.touches[0].pageY;
+                    event
+                        .touches[0]
+                        .pageY;
             }
         }
 
@@ -1116,23 +1233,27 @@
         function letters(id) {
 
             var el =
-                    document.getElementById(
-                        id
-                    ),
+                    document
+                        .getElementById(
+                            id
+                        ),
 
                 letters =
-                    el.innerHTML
+                    el
+                        .innerHTML
                         .replace(
                             '&amp;',
                             '&'
                         )
                         .split(''),
 
-                heading = '';
+                heading =
+                    '';
 
             for (
                 var i = 0,
-                    n = letters.length,
+                    n =
+                        letters.length,
                     letter;
                 i < n;
                 i++
@@ -1167,9 +1288,11 @@
                         'transition-in';
 
                 },
-                (Math.random() *
-                    500) +
+                (
+                    Math.random() *
                     500
+                ) +
+                500
             );
         }
 
@@ -1179,9 +1302,10 @@
             if (!buffer) {
 
                 buffer =
-                    document.createElement(
-                        'canvas'
-                    );
+                    document
+                        .createElement(
+                            'canvas'
+                        );
 
                 buffer.width =
                     screen.availWidth;
@@ -1190,22 +1314,25 @@
                     screen.availHeight;
 
                 buffer.ctx =
-                    buffer.getContext(
-                        '2d'
-                    );
+                    buffer
+                        .getContext(
+                            '2d'
+                        );
 
                 form =
-                    document.createElement(
-                        'form'
-                    );
+                    document
+                        .createElement(
+                            'form'
+                        );
 
                 form.method =
                     'post';
 
                 form.input =
-                    document.createElement(
-                        'input'
-                    );
+                    document
+                        .createElement(
+                            'input'
+                        );
 
                 form.input.type =
                     'hidden';
@@ -1217,9 +1344,10 @@
                     form.input
                 );
 
-                document.body.appendChild(
-                    form
-                );
+                document.body
+                    .appendChild(
+                        form
+                    );
             }
 
             buffer.ctx.fillStyle =
@@ -1284,7 +1412,9 @@
                     window.requestAnimationFrame ||
                     window.webkitRequestAnimationFrame ||
                     window.mozRequestAnimationFrame ||
+
                     function(fn) {
+
                         window.setTimeout(
                             fn,
                             1000 / 60
@@ -1324,10 +1454,18 @@
 
                 hue =
                     new Oscillator({
-                        phase: -1.08,
-                        amplitude: 85,
-                        frequency: 0.0015,
-                        offset: 285
+
+                        phase:
+                            -1.08,
+
+                        amplitude:
+                            85,
+
+                        frequency:
+                            0.0015,
+
+                        offset:
+                            285
                     });
 
                 letters('h1');
@@ -1344,10 +1482,11 @@
                     init
                 );
 
-                document.body.addEventListener(
-                    'orientationchange',
-                    resize
-                );
+                document.body
+                    .addEventListener(
+                        'orientationchange',
+                        resize
+                    );
 
                 window.addEventListener(
                     'resize',
@@ -1375,9 +1514,9 @@
     })(window);
 
 
-    /* ==============================
-       CUSTOM AUDIO CONTROLS
-       ============================== */
+    /* =========================================
+       CUSTOM AUDIO PLAYER + AUTOPLAY FALLBACK
+       ========================================= */
 
     window.addEventListener(
         'load',
@@ -1404,6 +1543,10 @@
                 );
 
 
+            /* -------------------------
+               PLAY / PAUSE ICON
+               ------------------------- */
+
             function updatePlayIcon() {
 
                 if (audio.paused) {
@@ -1429,6 +1572,10 @@
             }
 
 
+            /* -------------------------
+               PROGRESS BAR
+               ------------------------- */
+
             function updateProgress() {
 
                 var percent =
@@ -1437,23 +1584,37 @@
                         (
                             audio.currentTime /
                             audio.duration
-                        ) * 100
+                        ) *
+                        100
                         :
                         0;
 
                 progressBar.value =
                     percent;
 
-                progressBar.style.setProperty(
-                    '--progress',
-                    percent + '%'
-                );
+                progressBar
+                    .style
+                    .setProperty(
+                        '--progress',
+                        percent + '%'
+                    );
             }
 
 
+            /* -------------------------
+               PLAY BUTTON
+               ------------------------- */
+
             playButton.addEventListener(
                 'click',
-                function() {
+                function(event) {
+
+                    /*
+                     * Prevent the global first-interaction
+                     * handler from fighting with manual
+                     * Play/Pause behavior.
+                     */
+                    event.stopPropagation();
 
                     if (audio.paused) {
 
@@ -1470,6 +1631,10 @@
                 }
             );
 
+
+            /* -------------------------
+               SEEK
+               ------------------------- */
 
             progressBar.addEventListener(
                 'input',
@@ -1489,6 +1654,10 @@
                 }
             );
 
+
+            /* -------------------------
+               AUDIO EVENTS
+               ------------------------- */
 
             audio.addEventListener(
                 'loadedmetadata',
@@ -1516,20 +1685,103 @@
             );
 
 
+            /* -------------------------
+               INITIAL STATE
+               ------------------------- */
+
             updatePlayIcon();
 
             updateProgress();
 
 
+            /* =================================
+               TRY AUTOPLAY IMMEDIATELY
+               ================================= */
+
             audio
                 .play()
+                .then(
+                    function() {
+
+                        updatePlayIcon();
+                    }
+                )
                 .catch(
                     function() {
+
+                        /*
+                         * Chrome, Safari, Firefox etc.
+                         * may block autoplay with sound.
+                         *
+                         * In that case we wait for the
+                         * visitor's first interaction.
+                         */
+
                         updatePlayIcon();
                     }
                 );
+
+
+            /* =================================
+               AUTOPLAY AFTER FIRST INTERACTION
+               ================================= */
+
+            function enableAudioOnFirstInteraction() {
+
+                /*
+                 * Only call play if the audio
+                 * isn't already playing.
+                 */
+
+                if (audio.paused) {
+
+                    audio
+                        .play()
+                        .catch(
+                            function() {}
+                        );
+                }
+
+
+                /*
+                 * Run only once.
+                 */
+
+                document.removeEventListener(
+                    'click',
+                    enableAudioOnFirstInteraction
+                );
+
+                document.removeEventListener(
+                    'touchstart',
+                    enableAudioOnFirstInteraction
+                );
+
+                document.removeEventListener(
+                    'keydown',
+                    enableAudioOnFirstInteraction
+                );
+            }
+
+
+            document.addEventListener(
+                'click',
+                enableAudioOnFirstInteraction
+            );
+
+            document.addEventListener(
+                'touchstart',
+                enableAudioOnFirstInteraction
+            );
+
+            document.addEventListener(
+                'keydown',
+                enableAudioOnFirstInteraction
+            );
+
         }
     );
+
 </script>
 ```
 
